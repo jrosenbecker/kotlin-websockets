@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
 plugins {
     java
     application
@@ -7,7 +8,7 @@ plugins {
 }
 
 application {
-    mainClassName = "com.joerosenbecker.kotlinwebsockets.data.MigrationRunnerKt"
+    mainClassName = "com.joerosenbecker.kotlinwebsockets.seed.SeedRunnerKt"
 }
 
 group = "com.joerosenbecker"
@@ -26,6 +27,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     runtimeOnly("mysql:mysql-connector-java:8.0.17")
     testCompile("junit", "junit", "4.12")
+    compile(project(":kotlin-websockets-data"))
 }
 
 configure<JavaPluginConvention> {

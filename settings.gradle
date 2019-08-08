@@ -1,3 +1,6 @@
-include 'kotlin-websockets-data'
+include ':kotlin-websockets-data'
 include 'kotlin-websockets-web'
+include 'kotlin-websockets-seed'
+
+project(':kotlin-websockets-data').projectDir = file("./kotlin-websockets-data")
 

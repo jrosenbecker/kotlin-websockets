@@ -8,6 +8,7 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: superdupersecret
+      MYSQL_DATABASE: music-store
 
   adminer:
     container_name: adminer
