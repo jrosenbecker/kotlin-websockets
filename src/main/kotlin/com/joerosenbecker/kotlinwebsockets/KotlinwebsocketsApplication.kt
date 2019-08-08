@@ -7,5 +7,7 @@ import org.springframework.boot.runApplication
 class KotlinwebsocketsApplication
 
 fun main(args: Array<String>) {
-	runApplication<KotlinwebsocketsApplication>(*args)
+	runApplication<KotlinwebsocketsApplication>(*args) {
+
+	}
 }
