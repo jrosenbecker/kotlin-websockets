@@ -16,5 +16,6 @@ java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
     implementation("org.jetbrains.exposed:exposed:0.16.1")
+    implementation("io.github.microutils:kotlin-logging:1.7.4")
     runtimeOnly("mysql:mysql-connector-java:8.0.17")
 }

@@ -25,6 +25,7 @@ allprojects {
         implementation(kotlin("stdlib-jdk8"))
         implementation("org.jetbrains.kotlin:kotlin-reflect")
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        implementation("org.springframework:spring-context:5.1.9.RELEASE")
         testCompile("junit", "junit", "4.12")
     }
 

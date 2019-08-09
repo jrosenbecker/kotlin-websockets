@@ -14,6 +14,7 @@ configurations {
 
 plugins {
     id("org.springframework.boot") version "2.1.7.RELEASE"
+    kotlin("jvm")
 }
 
 dependencies {
@@ -21,6 +22,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation(project(":kotlin-websockets-service"))
 }
 
 tasks.withType<KotlinCompile> {

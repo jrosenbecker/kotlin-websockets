@@ -1,20 +1,24 @@
 package com.joerosenbecker.kotlinwebsockets.controllers
 
-import com.joerosenbecker.kotlinwebsockets.models.Track
-import org.springframework.ui.Model
+import com.joerosenbecker.kotlinwebsockets.contracts.TracksService
+import com.joerosenbecker.kotlinwebsockets.viewmodels.TrackViewModel
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.websocket.server.PathParam
 
 @RestController
 @RequestMapping("/api/tracks")
 class TrackController {
-    @GetMapping("")
-    fun root(model: Model): Track {
-        val track = Track();
-        track.title = "Jaws Theme Swimming";
-        track.artist = "Brand New";
-        track.album = "Deja Entendu";
+
+    @Autowired
+    lateinit var tracksService: TracksService;
+
+    @GetMapping("/{trackId}")
+    fun root(@PathVariable("trackId") trackId: Int): TrackViewModel {
+        val track = this.tracksService.getTrack(trackId);
         return track;
     }
 }
