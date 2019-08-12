@@ -3,10 +3,7 @@ package com.joerosenbecker.kotlinwebsockets.controllers
 import com.joerosenbecker.kotlinwebsockets.contracts.PlaylistService
 import com.joerosenbecker.kotlinwebsockets.viewmodels.PlaylistViewModel
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/playlists")
@@ -17,5 +14,10 @@ class PlaylistController {
     @GetMapping("/{playlistId}")
     fun getPlaylist(@PathVariable("playlistId") playlistId: Int): PlaylistViewModel {
         return this.playlistService.getPlaylist(playlistId);
+    }
+
+    @PostMapping("/{playlistId}/add")
+    fun addTracksToPlaylist(@PathVariable("playlistId") playlistId: Int, @RequestParam("trackId") trackIds: List<Int>): PlaylistViewModel {
+        return this.playlistService.addTrackToPlaylist(playlistId, trackIds);
     }
 }

@@ -14,4 +14,9 @@ class PlaylistServiceImpl : PlaylistService{
     override fun getPlaylist(id: Number): PlaylistViewModel {
         return PlaylistViewModel.makePlaylistViewModel(this.playlistRepository.getPlaylist(id.toInt()))
     }
+
+    override fun addTrackToPlaylist(playlistId: Int, trackIds: List<Int>): PlaylistViewModel {
+        this.playlistRepository.addTracksToPlaylist(playlistId, trackIds);
+        return this.getPlaylist(playlistId);
+    }
 }
