@@ -1,8 +1,6 @@
 package com.joerosenbecker.kotlinwebsockets.seed
 
-import com.joerosenbecker.kotlinwebsockets.data.models.Album
-import com.joerosenbecker.kotlinwebsockets.data.models.Artist
-import com.joerosenbecker.kotlinwebsockets.data.models.Track
+import com.joerosenbecker.kotlinwebsockets.data.models.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.deleteAll
@@ -18,6 +16,8 @@ private val connection = Database.connect(jdbc, driver = driver, user = "root", 
 
 fun main(args: Array<String>) {
     transaction {
+        PlaylistTrack.deleteAll()
+        Playlist.deleteAll()
         Track.deleteAll()
         Album.deleteAll()
         Artist.deleteAll()
@@ -34,16 +34,64 @@ fun main(args: Array<String>) {
             it[name] = "Damn the Torpedoes"
         } get Album.id
 
-        Track.insert {
+        val refugeeTrackId = Track.insert {
             it[id] = 1
             it[albumId] = damnTheTorpedoesId
             it[name] = "Refugee"
-        }
+        } get Track.id
 
-        Track.insert {
+        val evenTheLosersTrackId = Track.insert {
             it[id] = 2
             it[albumId] = damnTheTorpedoesId
             it[name] = "Even the Losers"
+        } get Track.id
+
+        val tomPettyPlaylistId = Playlist.insert {
+            it[id] = 1
+            it[name] = "Tom Petty Playlist"
+        } get Playlist.id
+
+        addTracksToPlaylist(tomPettyPlaylistId, arrayListOf(evenTheLosersTrackId, refugeeTrackId))
+
+        val jimiHendrixId = Artist.insert {
+            it[id] = 2
+            it[name] = "Jimi Hendrix"
+        } get Artist.id
+
+        val areYouExperiencedId = Album.insert {
+            it[id] = 2
+            it[name] = "Are You Experienced"
+            it[artistId] = jimiHendrixId
+        } get Album.id
+
+        val purpleHazeTrackId = Track.insert {
+            it[id] = 3
+            it[name] = "Purple Haze"
+            it[albumId] = areYouExperiencedId
+        } get Track.id
+
+        val heyJoeTrackId = Track.insert {
+            it[id] = 4
+            it[name] = "Hey Joe"
+            it[albumId] = areYouExperiencedId
+        } get Track.id
+
+        val classicRockPlaylistId = Playlist.insert {
+            it[id] = 2
+            it[name] = "Classic Rock"
+        } get Playlist.id
+
+        addTracksToPlaylist(classicRockPlaylistId, arrayListOf(refugeeTrackId, heyJoeTrackId, purpleHazeTrackId, evenTheLosersTrackId))
+    }
+}
+
+fun addTracksToPlaylist(playlistIdValue: Int, trackIds: List<Int>) {
+    var incrementingSortOrder = 0;
+    trackIds.forEach { trackIdValue ->
+        PlaylistTrack.insert {
+            it[playlistId] = playlistIdValue
+            it[trackId] = trackIdValue
+            it[sortOrder] = incrementingSortOrder++
         }
     }
 }

@@ -1,8 +1,6 @@
 package com.joerosenbecker.kotlinwebsockets.data
 
-import com.joerosenbecker.kotlinwebsockets.data.models.Album
-import com.joerosenbecker.kotlinwebsockets.data.models.Artist
-import com.joerosenbecker.kotlinwebsockets.data.models.Track
+import com.joerosenbecker.kotlinwebsockets.data.models.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.insert
@@ -17,7 +15,7 @@ class Data {
     fun main() {
         transaction {
             println("Creating database tables")
-            SchemaUtils.createMissingTablesAndColumns(Artist, Album, Track)
+            SchemaUtils.createMissingTablesAndColumns(Artist, Album, Track, Playlist, PlaylistTrack)
         }
     }
 }
