@@ -26,6 +26,4 @@ class TrackController {
         val track = this.tracksService.getTrack(trackId);
         return track;
     }
-
-
 }
