@@ -8,6 +8,7 @@ import javax.websocket.server.PathParam
 
 @RestController
 @RequestMapping("/api/tracks")
+@CrossOrigin
 class TrackController {
 
     @Autowired

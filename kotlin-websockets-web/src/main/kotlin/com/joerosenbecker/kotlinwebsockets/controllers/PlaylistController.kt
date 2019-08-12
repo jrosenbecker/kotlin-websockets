@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/playlists")
+@CrossOrigin
 class PlaylistController {
     @Autowired
     lateinit var playlistService: PlaylistService;
