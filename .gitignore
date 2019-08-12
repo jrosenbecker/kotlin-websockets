@@ -30,3 +30,51 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+kotlin-websockets-ui/dist
+kotlin-websockets-ui/tmp
+kotlin-websockets-ui/out-tsc
+# Only exists if Bazel was run
+kotlin-websockets-ui/bazel-out
+
+# dependencies
+kotlin-websockets-ui/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+kotlin-websockets-ui/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
