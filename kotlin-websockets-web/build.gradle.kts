@@ -12,6 +12,10 @@ configurations {
     }
 }
 
+springBoot {
+    mainClassName = "com.joerosenbecker.kotlinwebsockets.KotlinwebsocketsApplication"
+}
+
 plugins {
     id("org.springframework.boot") version "2.1.7.RELEASE"
     kotlin("jvm")

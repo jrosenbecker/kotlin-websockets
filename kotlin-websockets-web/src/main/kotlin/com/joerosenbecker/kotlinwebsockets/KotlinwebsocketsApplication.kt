@@ -6,8 +6,17 @@ import org.springframework.context.annotation.ComponentScan
 
 @ComponentScan("com.joerosenbecker.kotlinwebsockets")
 @SpringBootApplication
-class KotlinwebsocketsApplication
+class KotlinwebsocketsApplication {
 
-fun main(args: Array<String>) {
-	runApplication<KotlinwebsocketsApplication>(*args)
+	companion object {
+
+		@JvmStatic
+		fun main(args: Array<String>) {
+			runApplication<KotlinwebsocketsApplication>(*args)
+		}
+	}
+
 }
+
+
+

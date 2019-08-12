@@ -16,9 +16,16 @@ class TrackController {
     @Autowired
     lateinit var tracksService: TracksService;
 
+    @GetMapping("")
+    fun getAllTracks(): MutableList<TrackViewModel> {
+        return this.tracksService.getAllTracks()
+    }
+
     @GetMapping("/{trackId}")
-    fun root(@PathVariable("trackId") trackId: Int): TrackViewModel {
+    fun getTrack(@PathVariable("trackId") trackId: Int): TrackViewModel {
         val track = this.tracksService.getTrack(trackId);
         return track;
     }
+
+
 }

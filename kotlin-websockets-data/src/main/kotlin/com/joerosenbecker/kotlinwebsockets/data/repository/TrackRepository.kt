@@ -6,13 +6,21 @@ import com.joerosenbecker.kotlinwebsockets.data.models.Track
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.springframework.stereotype.Service
 
-class TrackRepository {
-    private val jdbc = "jdbc:mysql://localhost:3306/music-store";
-    private val driver = "com.mysql.cj.jdbc.Driver";
+@Service
+class TrackRepository : Repository() {
 
-    private val connection = Database.connect(jdbc, driver = driver, user = "root", password = "superdupersecret");
+    fun getAllTracks(): List<ResultRow> {
+        var result: List<ResultRow> = arrayListOf();
+        transaction {
+            result = (Track innerJoin Album innerJoin Artist).selectAll().toList()
+        }
+
+        return result;
+    }
 
     fun getTrack(id: Int): ResultRow? {
         var result: ResultRow? = null;

@@ -24,17 +24,26 @@ fun main(args: Array<String>) {
 
 
         val tomPettyId = Artist.insert {
+            it[id] = 1
             it[name] = "Tom Petty & The Heartbreakers"
         } get Artist.id
 
         val damnTheTorpedoesId = Album.insert {
+            it[id] = 1
             it[artistId] = tomPettyId
             it[name] = "Damn the Torpedoes"
         } get Album.id
 
         Track.insert {
+            it[id] = 1
             it[albumId] = damnTheTorpedoesId
             it[name] = "Refugee"
+        }
+
+        Track.insert {
+            it[id] = 2
+            it[albumId] = damnTheTorpedoesId
+            it[name] = "Even the Losers"
         }
     }
 }
