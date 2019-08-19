@@ -7,21 +7,14 @@ import org.springframework.boot.runApplication
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
 
-@ComponentScan("com.joerosenbecker.kotlinwebsockets")
+@ComponentScan("com.joerosenbecker.kotlinwebsockets", "com.joerosenbecker.kotlinwebsockets.*")
 @SpringBootApplication
-class KotlinwebsocketsApplication {
+class KotlinwebsocketsApplication
 
-	companion object {
-
-		@JvmStatic
-		fun main(args: Array<String>) {
-			val app = SpringApplication(KotlinwebsocketsApplication::class.java)
-			app.webApplicationType = WebApplicationType.REACTIVE
-			app.run(*args)
-		}
-	}
-
+fun main(args: Array<String>) {
+	runApplication<KotlinwebsocketsApplication>(*args)
 }
+
 
 
 

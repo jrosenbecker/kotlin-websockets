@@ -13,7 +13,7 @@ configurations {
 }
 
 springBoot {
-    mainClassName = "com.joerosenbecker.kotlinwebsockets.KotlinwebsocketsApplication"
+    mainClassName = "com.joerosenbecker.kotlinwebsockets.KotlinwebsocketsApplicationKt"
 }
 
 plugins {
@@ -26,6 +26,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework:spring-websocket")
+    implementation("org.springframework:spring-messaging")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation(project(":kotlin-websockets-service"))

@@ -20,7 +20,6 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
 
-
     dependencies {
         implementation(kotlin("stdlib-jdk8"))
         implementation("org.jetbrains.kotlin:kotlin-reflect")
