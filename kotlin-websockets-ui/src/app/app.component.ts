@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as SockJS from 'sockjs-client';
+import { RxStompService } from '@stomp/ng2-stompjs';
 
 @Component({
   selector: 'app-root',
@@ -7,17 +7,16 @@ import * as SockJS from 'sockjs-client';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private serverUrl = 'http://localhost:9090/api/ws/playlists';
+  private serverUrl = 'ws://localhost:9090/ws';
   private stompClient;
 
-  constructor() {
+  constructor(private rxStompService: RxStompService) {
     this.initializeWebSocketConnection();
   }
 
   initializeWebSocketConnection() {
-    var sock = new SockJS(this.serverUrl);
-    sock.onopen = () => { console.log('open'); };
-    sock.onmessage = (message) => { console.log(message); };
-    sock.onclose = () => { console.log('close'); };
+    this.rxStompService.watch('/topic/playlist').subscribe(playlist => {
+      console.log(playlist);
+    })
   }
 }
